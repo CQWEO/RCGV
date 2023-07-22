@@ -702,19 +702,6 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-   Tab2:Toggle("God mode","Make it so entity like Rush and Ambush can't kill me (Because Me,GOD MODE)"false,function(Bool)
-    if Bool Then
-        God_Mode.Below =
-function(Room)
-                 table.insert(RushAndAmbushSafeRooms,
-tostring(Room))
-            end
-        else
-        God_Mode.Below =
-BelowFunction
-      end
-   end)
-end
 TextChatService.OnIncomingMessage = function(MessageData)
     task.spawn(function()
         local ChatWindow = game.CoreGui.ExperienceChat.appLayout.chatWindow.scrollingView.bottomLockedScrollView.RCTScrollView.RCTScrollContentView
