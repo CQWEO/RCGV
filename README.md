@@ -50,7 +50,6 @@ local DisableEyes = false
 local DisableGlitch = false
 local DisableSnare = false
 local WasteItems = false
-local god mode = false
 local ScreechModule
 local CustomScreechModule
 local TimothyModule
@@ -177,7 +176,7 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("RushNew") then
                 if not Object.RushNew:WaitForChild("PlaySound").Playing then return end
             end
-            local Color = ESP_Items[Object.Name] and Color3.new("1,1") or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,123456789,0)
+            local Color = ESP_Items[Object.Name] and Color3.new(1,1) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,123456789,0)
             if Object.Name == "RushMoving" or Object.Name == "AmbushMoving" or Object.Name == "Eyes" or Object.Name == "A60" or Object.Name == "A120" then
                 for i = 1, 100 do
                     if Object:FindFirstChildOfClass("Part") then
