@@ -50,6 +50,7 @@ local DisableEyes = false
 local DisableGlitch = false
 local DisableSnare = false
 local WasteItems = false
+local god mode = false
 local ScreechModule
 local CustomScreechModule
 local TimothyModule
@@ -700,6 +701,19 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
             Module_Events.shatter = ShatterFunction
         end
     end)
+end
+   Tab2:Toggle("God mode","Make it so entity like Rush and Ambush can't kill me (Because Me,GOD MODE)"false,function(Bool)
+    if Bool Then
+        God_Mode.Below =
+function(Room)
+                 table.insert(RushAndAmbushSafeRooms,
+tostring(Room))
+            end
+        else
+        God_Mode.Below =
+BelowFunction
+      end
+   end)
 end
 TextChatService.OnIncomingMessage = function(MessageData)
     task.spawn(function()
