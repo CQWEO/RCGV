@@ -1,8 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(7
-,5.2), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(0,5,0,0.0), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -123,7 +122,7 @@ local function ReplacePainting(Painting,NewImage,NewTitle)
     Painting:WaitForChild("Canvas").SurfaceGui.ImageLabel.Image = NewImage
     Painting.Canvas.SurfaceGui.ImageLabel.BackgroundTransparency = 1
     Painting.Canvas.SurfaceGui.ImageLabel.ImageTransparency = 0
-    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(1,1,1)
+    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(0,0,0)
     local NewPrompt = Painting:WaitForChild("InteractPrompt"):Clone()
     Painting.InteractPrompt:Destroy()
     NewPrompt.Parent = Painting
@@ -177,7 +176,7 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("RushNew") then
                 if not Object.RushNew:WaitForChild("PlaySound").Playing then return end
             end
-            local Color = ESP_Items[Object.Name] and Color3.new(5,7,9) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,1,1)
+            local Color = ESP_Items[Object.Name] and Color3.new(0,123456789,0) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,123456789,0)
             if Object.Name == "RushMoving" or Object.Name == "AmbushMoving" or Object.Name == "Eyes" or Object.Name == "A60" or Object.Name == "A120" then
                 for i = 1, 100 do
                     if Object:FindFirstChildOfClass("Part") then
@@ -282,8 +281,8 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("LockPart") then
                 Object.LockPart:WaitForChild("UnlockPrompt", 1).Enabled = not DisableDupe
             end
-            Object.Door.Color = DisableDupe and Color3.new(0.5,0,0) or Color3.fromRGB(129,111,100)
-            Object.Door.SignPart.Color = DisableDupe and Color3.new(0.5,0,0) or Color3.fromRGB(129,111,100)
+            Object.Door.Color = DisableDupe and Color3.new(0.5,0,0.0) or Color3.fromRGB(129,111,100)
+            Object.Door.SignPart.Color = DisableDupe and Color3.new(0.5,0,0.0) or Color3.fromRGB(129,111,100)
             for _,DoorNumber in pairs({Object.Sign.Stinker,Object.Sign.Stinker.Highlight,Object.Sign.Stinker.Shadow}) do
                 DoorNumber.Text = DisableDupe and "DUPE" or string.format("%0.4i",LatestRoom.Value)
             end
