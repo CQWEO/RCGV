@@ -122,7 +122,7 @@ local function ReplacePainting(Painting,NewImage,NewTitle)
     Painting:WaitForChild("Canvas").SurfaceGui.ImageLabel.Image = NewImage
     Painting.Canvas.SurfaceGui.ImageLabel.BackgroundTransparency = 1
     Painting.Canvas.SurfaceGui.ImageLabel.ImageTransparency = 0
-    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(9,9,9)
+    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(9,8,6,4,7,5,5,9,7,6,4,2,9,0,3)
     local NewPrompt = Painting:WaitForChild("InteractPrompt"):Clone()
     Painting.InteractPrompt:Destroy()
     NewPrompt.Parent = Painting
