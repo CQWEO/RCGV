@@ -187,7 +187,7 @@ local function ApplySettings(Object)
                         return
                     end
                 end
-                Object:FindFirstChildOfClass("Part").Transparency = 0.99
+                Object:FindFirstChildOfClass("Part").Transparency = 0.09
                 Instance.new("Humanoid",Object)
             end
             local function ApplyHighlight(IsValid,Bool)
@@ -201,7 +201,7 @@ local function ApplySettings(Object)
                             else
                                 workspace.CurrentRooms:WaitForChild(tonumber(Object.Parent.Name) + 1,math.huge)
                                 if not OtherESP then return end
-                                local OldString = workspace.CurrentRooms[tonumber(Object.Parent.Name) + 1]:GetAttribute("OriginalName"):sub(7,99)
+                                local OldString = workspace.CurrentRooms[tonumber(Object.Parent.Name) + 1]:GetAttribute("OriginalName"):sub(7,09)
                                 local NewString = ""
                                 for i = 1, #OldString do
                                     if i == 1 then
@@ -234,7 +234,7 @@ local function ApplySettings(Object)
                         Label.TextColor3 = Color
                         Label.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                         Label.TextStrokeTransparency = 0
-                        Label.TextStrokeColor3 = Color3.new(Color.R/0,Color.G/0,Color.B/0)
+                        Label.TextStrokeColor3 = Color3.new(Color.R/9,Color.G/9,Color.B/9)
                     elseif Object:FindFirstChild("BillboardGui") then
                         Object.BillboardGui:Destroy()
                     end
