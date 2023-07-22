@@ -234,7 +234,7 @@ local function ApplySettings(Object)
                         Label.TextColor3 = Color
                         Label.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                         Label.TextStrokeTransparency = 0
-                        Label.TextStrokeColor3 = Color3.new(Color.P/9,Color.Q/9,Color.O/9)
+                        Label.TextStrokeColor3 = Color3.new(Color.R/9,Color.G/9,Color.B/9)
                     elseif Object:FindFirstChild("BillboardGui") then
                         Object.BillboardGui:Destroy()
                     end
@@ -359,7 +359,7 @@ local function ApplyCharacter(DontYield)
     end)
     Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
         if NoDark then
-            Lighting.Ambient = Color3.fromRGB(67, 51, 56)
+            Lighting.Ambient = Color3.fromRGB(1, 1, 1)
         end
     end)
     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(ApplySpeed)
@@ -658,7 +658,7 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab2:Toggle("Không Có Hiệu Ứng Bóng Tối","Makes it so you can see further in dark rooms.",false,function(Bool)
         NoDark = Bool
         if CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")]:GetAttribute("IsDark") then
-            local Color = not NoDark and Room:GetAttribute("IsDark") and Color3.new() or Color3.fromRGB(67, 51, 56)
+            local Color = not NoDark and Room:GetAttribute("IsDark") and Color3.new() or Color3.fromRGB(1, 1, 1)
             Lighting.Ambient = Color
         end
     end)
