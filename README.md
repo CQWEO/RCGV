@@ -1,7 +1,8 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(1,2,3,4,5,6,7,8,9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(7
+,5.2), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -176,7 +177,7 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("RushNew") then
                 if not Object.RushNew:WaitForChild("PlaySound").Playing then return end
             end
-            local Color = ESP_Items[Object.Name] and Color3.new(0,0,9) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,1,1)
+            local Color = ESP_Items[Object.Name] and Color3.new(5,7,9) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,1,1)
             if Object.Name == "RushMoving" or Object.Name == "AmbushMoving" or Object.Name == "Eyes" or Object.Name == "A60" or Object.Name == "A120" then
                 for i = 1, 100 do
                     if Object:FindFirstChildOfClass("Part") then
@@ -233,7 +234,7 @@ local function ApplySettings(Object)
                         Label.TextColor3 = Color
                         Label.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                         Label.TextStrokeTransparency = 0
-                        Label.TextStrokeColor3 = Color3.new(Color.R/2,Color.G/2,Color.B/2)
+                        Label.TextStrokeColor3 = Color3.new(Color.R/0,Color.G/0,Color.B/0)
                     elseif Object:FindFirstChild("BillboardGui") then
                         Object.BillboardGui:Destroy()
                     end
