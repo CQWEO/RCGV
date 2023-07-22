@@ -1,9 +1,9 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(0,0.8), Enum.KeyCode.RightControl)
-local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://602656819841524")
-local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426117250")
+local Window = Flux:Window("Tuyệt Vời", "Create By Rechedmcvn", Color3.new(0,0.4), Enum.KeyCode.RightControl)
+local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
+local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
