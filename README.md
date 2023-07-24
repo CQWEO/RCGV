@@ -239,7 +239,7 @@ local function ApplySettings(Object)
                     end
                     local Target = Object
                     if IsValid[1] == "Door" and Object.Parent.Name ~= "49" and Object.Parent.Name ~= "50" then
-                        Target = Object:WaitForChild("Door")
+                        Target = Object:WaitForChild("Cửa")
                     end
                     if Bool then
                         local Highlight = Instance.new("Highlight",Target)
