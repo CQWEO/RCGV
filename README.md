@@ -216,7 +216,7 @@ local function ApplySettings(Object)
                                 end
                                 RoomName = " (" .. NewString .. ")"
                             end
-                            TXT = "Door " .. (Floor.Value == "Room" and "A-" or "") .. tonumber(Object.Parent.Name) + 1 .. RoomName
+                            TXT = "Cửa" .. (Floor.Value == "Phòng" and "A-" or "") .. tonumber(Object.Parent.Name) + 1 .. RoomName
                         end
                         if IsValid[1] == "Gold" then
                             TXT = Object:GetAttribute("GoldValue") .. " Gold"
@@ -239,7 +239,7 @@ local function ApplySettings(Object)
                     end
                     local Target = Object
                     if IsValid[1] == "Door" and Object.Parent.Name ~= "49" and Object.Parent.Name ~= "50" then
-                        Target = Object:WaitForChild("Cửa")
+                        Target = Object:WaitForChild("Door")
                     end
                     if Bool then
                         local Highlight = Instance.new("Highlight",Target)
