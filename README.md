@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("You Hub", "Create By Rechedmcvn", Color3.new(7,9.9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("LION KC LEE HUB", "Create By Rechedmcvn", Color3.new(7,9.9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -110,7 +110,7 @@ end)
 DeathHint.OnClientEvent:Connect(function()
     if RemoveDeathHint then
         task.wait()
-        firesignal(DeathHint.OnClientEvent,{},"Blue")
+        firesignal(DeathHint.OnClientEvent,{},"Yellow")
     end
 end)
 for _,Player in pairs(Players:GetPlayers()) do
@@ -122,7 +122,7 @@ local function ReplacePainting(Painting,NewImage,NewTitle)
     Painting:WaitForChild("Canvas").SurfaceGui.ImageLabel.Image = NewImage
     Painting.Canvas.SurfaceGui.ImageLabel.BackgroundTransparency = 1
     Painting.Canvas.SurfaceGui.ImageLabel.ImageTransparency = 0
-    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(1,1,1)
+    Painting.Canvas.SurfaceGui.ImageLabel.ImageColor3 = Color3.new(0,0,9)
     local NewPrompt = Painting:WaitForChild("InteractPrompt"):Clone()
     Painting.InteractPrompt:Destroy()
     NewPrompt.Parent = Painting
@@ -176,10 +176,10 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("RushNew") then
                 if not Object.RushNew:WaitForChild("PlaySound").Playing then return end
             end
-            local Color = ESP_Items[Object.Name] and Color3.new(7,5,6) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,123456789,0)
+            local Color = ESP_Items[Object.Name] and Color3.new(1,1) or ESP_Entities[Object.Name] and Color3.new(1) or Color3.new(0,1,1)
             if Object.Name == "RushMoving" or Object.Name == "AmbushMoving" or Object.Name == "Eyes" or Object.Name == "A60" or Object.Name == "A120" then
                 for i = 1, 100 do
-                    if Object:FindFirstChildOfClass("LockPart") then
+                    if Object:FindFirstChildOfClass("Part") then
                         break
                     end
                     if i == 100 then
@@ -193,9 +193,9 @@ local function ApplySettings(Object)
                 if IsValid then
                     if Bool then
                         local TXT = IsValid[1]
-                        if IsValid[1] == "Cửa" then
+                        if IsValid[1] == "Door" then
                             local RoomName
-                            if Floor.Value == "Phòng" then
+                            if Floor.Value == "Room" then
                                 RoomName = ""
                             else
                                 workspace.CurrentRooms:WaitForChild(tonumber(Object.Parent.Name) + 1,math.huge)
@@ -216,10 +216,10 @@ local function ApplySettings(Object)
                                 end
                                 RoomName = " (" .. NewString .. ")"
                             end
-                            TXT = "Cửa " .. (Floor.Value == "Phòng" and "A-" or "") .. tonumber(Object.Parent.Name) + 1 .. RoomName
+                            TXT = "Door " .. (Floor.Value == "Room" and "A-" or "") .. tonumber(Object.Parent.Name) + 1 .. RoomName
                         end
-                        if IsValid[1] == "Vàng" then
-                            TXT = Object:GetAttribute("GoldValue") .. " Vàng"
+                        if IsValid[1] == "Gold" then
+                            TXT = Object:GetAttribute("GoldValue") .. " Gold"
                         end
                         local UI = Instance.new("BillboardGui",Object)
                         UI.Size = UDim2.new(0,1000,0,30)
@@ -233,13 +233,13 @@ local function ApplySettings(Object)
                         Label.TextColor3 = Color
                         Label.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                         Label.TextStrokeTransparency = 0
-                        Label.TextStrokeColor3 = Color3.new(Color.R/9,Color.G/9,Color.B/9)
+                        Label.TextStrokeColor3 = Color3.new(Color.R/2,Color.G/2,Color.B/2)
                     elseif Object:FindFirstChild("BillboardGui") then
                         Object.BillboardGui:Destroy()
                     end
                     local Target = Object
-                    if IsValid[1] == "Cửa" and Object.Parent.Name ~= "49" and Object.Parent.Name ~= "50" then
-                        Target = Object:WaitForChild("Cửa")
+                    if IsValid[1] == "Door" and Object.Parent.Name ~= "49" and Object.Parent.Name ~= "50" then
+                        Target = Object:WaitForChild("Door")
                     end
                     if Bool then
                         local Highlight = Instance.new("Highlight",Target)
@@ -281,8 +281,8 @@ local function ApplySettings(Object)
             if Object:FindFirstChild("LockPart") then
                 Object.LockPart:WaitForChild("UnlockPrompt", 1).Enabled = not DisableDupe
             end
-            Object.Door.Color = DisableDupe and Color3.new(0.5,0,0.0) or Color3.fromRGB(129,111,100)
-            Object.Door.SignPart.Color = DisableDupe and Color3.new(0.5,0,0.0) or Color3.fromRGB(129,111,100)
+            Object.Door.Color = DisableDupe and Color3.new(0.5,0,0) or Color3.fromRGB(129,111,100)
+            Object.Door.SignPart.Color = DisableDupe and Color3.new(0.5,0,0) or Color3.fromRGB(129,111,100)
             for _,DoorNumber in pairs({Object.Sign.Stinker,Object.Sign.Stinker.Highlight,Object.Sign.Stinker.Shadow}) do
                 DoorNumber.Text = DisableDupe and "DUPE" or string.format("%0.4i",LatestRoom.Value)
             end
@@ -358,7 +358,7 @@ local function ApplyCharacter(DontYield)
     end)
     Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
         if NoDark then
-            Lighting.Ambient = Color3.fromRGB(1, 1, 1)
+            Lighting.Ambient = Color3.fromRGB(67, 51, 56)
         end
     end)
     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(ApplySpeed)
@@ -657,7 +657,7 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab2:Toggle("Không Có Hiệu Ứng Bóng Tối","Makes it so you can see further in dark rooms.",false,function(Bool)
         NoDark = Bool
         if CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")]:GetAttribute("IsDark") then
-            local Color = not NoDark and Room:GetAttribute("IsDark") and Color3.new() or Color3.fromRGB(1, 1, 1)
+            local Color = not NoDark and Room:GetAttribute("IsDark") and Color3.new() or Color3.fromRGB(67, 51, 56)
             Lighting.Ambient = Color
         end
     end)
