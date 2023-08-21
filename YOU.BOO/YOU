@@ -6,7 +6,7 @@
 local Main = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local SeekRemove = Instance.new("TextButton")
+local Korblox = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 
 --Properties:
@@ -25,15 +25,16 @@ MainFrame.Draggable = true
 
 UICorner.Parent = MainFrame
 
-SeekRemove.Name = "RemoveSeekChase"
-game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Seedmcmvs then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):FindFirstChild("Collision") then for v460,v461 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):GetDescendants()) do if (v461.ClassName=="Part") then v461.TouchInterest:Destroy();end end for v462,v463 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):GetDescendants()) do if (v463.ClassName=="Part") then v463.CanCollide=false;end end end end end);end)
-SeekRemove.MouseButton1Click:Connect(function()
-	local ply = game.Players.LocalPlayer
-	local chr = ply.Character
-	chr.RightLowerLeg.MeshId = "902942093"
-	chr.RightLowerLeg.Transparency = "1"
-	chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
-	chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
-	chr.RightFoot.MeshId = "902942089"
-	chr.RightFoot.Transparency = "1"
+Korblox.Name = "Remove Seek Chase"
+Korblox.Parent = MainFrame
+Korblox.BackgroundColor3 = Color3.fromRGB(73, 12, 255)
+Korblox.Position = UDim2.new(0.0858895704, 0, 0.0825688019, 0)
+Korblox.Size = UDim2.new(0, 134, 0, 42)
+Korblox.Font = Enum.Font.GothamBlack
+Korblox.Text = "Remove Seek Chase"
+Korblox.TextColor3 = Color3.fromRGB(255, 255, 255)
+Korblox.TextSize = 23.000
+Korblox.TextWrapped = true
+Korblox.MouseButton1Click:Connect(function()
+	local ply = game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Seedmcmvs then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):FindFirstChild("Collision") then for v460,v461 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):GetDescendants()) do if (v461.ClassName=="Part") then v461.TouchInterest:Destroy();end end for v462,v463 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("TriggerEventCollision"):GetDescendants()) do if (v463.ClassName=="Part") then v463.CanCollide=false;end end end end end);end)
 end)
