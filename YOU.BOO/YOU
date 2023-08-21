@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("YOU HUB", "Create By Rechedmcvn", Color3.new(7,9.9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("FLAME🔥/WATERSEA🌊", "Create By Rechedmcvn", Color3.new(7,9.9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -427,9 +427,6 @@ EntityInfo.A90.OnClientEvent:Connect(function()
         end)
     end
 end)
-Tab:Toggle("Không Thoát Fix","Fixes the bug where you can't exit a closet right after entering it",false,function(Bool)
-    ClosetExitFix = Bool
-end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab:Toggle("Anti Cửa Sai","Makes it so you can't open duped doors",false,function(Bool)
         DisableDupe = Bool
@@ -456,71 +453,10 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-Tab:Toggle("Bật tương tác","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
-    EnableInteractions = Bool
-    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-        if Object:IsA("ProximityPrompt") then
-            if EnableInteractions and Object.Enabled then
-                table.insert(OldEnabled,Object)
-            end
-            Object.Enabled = EnableInteractions
-            if not EnableInteractions then
-                if table.find(OldEnabled, Object) then
-                    Object.Enabled = true
-                end
-            end
-            Object:GetPropertyChangedSignal("Enabled"):Connect(function()
-                if EnableInteractions then
-                    Object.Enabled = true
-                end
-            end)
-        end
-    end
-    if not EnableInteractions then
-        for index in pairs(OldEnabled) do
-            table.remove(OldEnabled, index)
-        end
-    end
-end)
 Tab:Toggle("Không gây trừ máu bởi eyes","Makes the game (and other players) think you are looking down whenever eyes spawns.",false,function(Bool)
     DisableEyes = Bool
     if workspace:FindFirstChild("eyes") then
         MotorReplication:FireServer(0,DisableEyes and -120 or 0,0,false)
-    end
-end)
-Tab:Toggle("Mở Cửa Xa","Makes it so you can open doors from much further away.",false,function(Bool)
-    if Bool then
-        DoorRange = RunService.Heartbeat:Connect(function()
-            if not workspace:FindFirstChild("A120") then
-                CurrentRooms:WaitForChild(LatestRoom.Value):WaitForChild("Door"):WaitForChild("ClientOpen"):FireServer()
-            end
-        end)
-    else
-        DoorRange:Disconnect()
-    end
-end)
-Tab:Toggle("Nhấn Từ Xa","Doubles the Max Activation Distance for Proximity Prompts.",false,function(Bool)
-    IncreasedDistance = Bool
-    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-        if Object:IsA("ProximityPrompt") then
-            Object.MaxActivationDistance *= IncreasedDistance and 2 or 0.5
-        end
-    end
-end)
-Tab:Toggle("Xoá Giữ","Removes having to hold down the button for a long period of time on Proximity Prompts.",false,function(Bool)
-    InstantInteract = Bool
-    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-        if Object:IsA("ProximityPrompt") then
-            Object.HoldDuration = -Object.HoldDuration
-        end
-    end
-end)
-Tab:Toggle("Tương Tác Thông Qua Các Đối Tượng","Lets you interact with Proximity Prompts through Parts. Could be useful for grabbing book faster.",false,function(Bool)
-    InteractNoclip = Bool
-    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-        if Object:IsA("ProximityPrompt") then
-            Object.RequiresLineOfSight = not InteractNoclip
-        end
     end
 end)
 Tab:Toggle("Giải Điện Trong 10 Giây","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
@@ -532,127 +468,11 @@ Tab:Toggle("Giải Điện Trong 10 Giây","Tricks the game into thinking you co
         EntityInfo.EBF:FireServer()
     end
 end)
-Tab:Toggle("Đi Xuyên Tường","Lets you walk through any object. Does not work on Doors.",false,function(Bool)
-    Noclip = Bool
-    if Character:FindFirstChild("Collision") then
-        Character.Collision.CanCollide = not Noclip
-    end
-    PrimaryPart.CanCollide = not Noclip
-end)
-Tab:Slider("Tốc Độ","Boosts your speed.",0,6,0,function(speed)
-    SpeedBoost = speed
-    ApplySpeed(true)
-end)
-if Floor.Value == "Hotel" or Floor.Value == "Fools" then
-    Tab:Button("Giải Khu Thư Viện","Instantly inputs the Padlock code for Room 50. Can guess up to 3 digits. Requires 1 Player to have the hint paper.",function()
-        local Paper = workspace:FindFirstChild("LibraryHintPaper",true) or workspace:FindFirstChild("LibraryHintPaperHard",true) or Players:FindFirstChild("LibraryHintPaper",true) or Players:FindFirstChild("LibraryHintPaperHard",true)
-        if not Paper then
-            Flux:Notification("Someone needs to have the Hint Paper to use this.","OK")
-            return
-        end
-        local HintsNeeded = Floor.Value == "Fools" and 8 or 3
-        local Hints = 0
-        for _,Collected in pairs(LocalPlayer.PlayerGui.PermUI.Hints:GetChildren()) do
-            if Collected.Name == "Icon" then
-                if Collected:IsA("ImageLabel") then
-                    for _,Icon in pairs(Paper.UI:GetChildren()) do
-                        if tonumber(Icon.Name) then
-                            if Icon.ImageRectOffset == Collected.ImageRectOffset then
-                                Hints += 1
-                            end
-                        end
-                    end
-                end
-            end
-        end
-        if Hints < HintsNeeded then
-            Flux:Notification("You need to collect at least " .. HintsNeeded - Hints .. " more correct hint" .. (Hints ~= 2 and "s" or "") .. " to use this.","OK")
-            return
-        end
-        local t = {}
-        for i = 1, Floor.Value == "Hotel" and 5 or 10 do
-            local Icon = Paper.UI[i]
-            local Number = -1
-            for _,Collected in pairs(LocalPlayer.PlayerGui.PermUI.Hints:GetChildren()) do
-                if Collected.Name == "Icon" then
-                    if Collected.ImageRectOffset == Icon.ImageRectOffset then
-                        Number = tonumber(Collected.TextLabel.Text)
-                    end
-                end
-            end
-            table.insert(t,Number)
-        end
-        for one=0,t[1]==-1 and 9 or 0 do
-            for two=0,t[2]==-1 and 9 or 0 do
-                for three=0,t[3]==-1 and 9 or 0 do
-                    for four=0,t[4]==-1 and 9 or 0 do
-                        for five=0,t[5]==-1 and 9 or 0 do
-                            if Floor.Value == "Fools" then
-                                for six=0,t[6]==-1 and 9 or 0 do
-                                    for seven=0,t[7]==-1 and 9 or 0 do
-                                        for eight=0,t[8]==-1 and 9 or 0 do
-                                            for nine=0,t[9]==-1 and 9 or 0 do
-                                                for ten=0,t[10]==-1 and 9 or 0 do
-                                                    EntityInfo.PL:FireServer((t[1]==-1 and one or t[1])..(t[2]==-1 and two or t[2])..(t[3]==-1 and three or t[3])..(t[4]==-1 and four or t[4])..(t[5]==-1 and five or t[5])..(t[6]==-1 and six or t[6])..(t[7]==-1 and seven or t[7])..(t[8]==-1 and eight or t[8])..(t[9]==-1 and nine or t[9])..(t[10]==-1 and ten or t[10]))
-                                                end
-                                            end
-                                        end
-                                    end
-                                end
-                            else
-                                EntityInfo.PL:FireServer((t[1]==-1 and one or t[1])..(t[2]==-1 and two or t[2])..(t[3]==-1 and three or t[3])..(t[4]==-1 and four or t[4])..(t[5]==-1 and five or t[5]))
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end)
-end
-Tab:Toggle("Lãng Phí Vật Phẩm Người Chơi Khác","Repeatedly uses everyone else's items like Vitamins, The Lighter, and The Flashlight.",false,function(Bool)
-    WasteItems = Bool
-    while task.wait(1) do
-        if not WasteItems then
-            break
-        end
-        for _,Player in pairs(Players:GetPlayers()) do
-            local function WasteItem(Item)
-                if Item.Parent ~= Character and Item.Parent.Parent ~= LocalPlayer then
-                    if ((Item.Name == "Lighter" or Item.Name == "Flashlight") and Item:GetAttribute("Enabled") == false) or Item.Name == "Vitamins" then
-                        Item.Remote:FireServer()
-                    end
-                end
-            end
-            for _,Item in pairs(Player.Backpack:GetChildren()) do
-                WasteItem(Item)
-            end
-            for _,Item in pairs(Player.Character:GetChildren()) do
-                WasteItem(Item)
-            end
-        end
-    end
-end)
 if Floor.Value == "Phòng" then
     Tab2:Toggle("Xoá A90","Disables A-90 visual, sound, and damage.",false,function(Bool)
         DisableA90 = Bool
     end)
 end
-Tab2:Toggle("Esp Thực Thể","Highlights all hostile entities.",false,function(Bool)
-    EntityESP = Bool
-    for _,Object in pairs(workspace:GetDescendants()) do
-        if ESP_Entities[Object.Name] then
-            ApplySettings(Object)
-        end
-    end
-end)
-Tab2:Toggle("Esp Vật Phẩm","Highlights items like Keys, Books, and Crucifixes through walls.",false,function(Bool)
-    ItemESP = Bool
-    for _,Object in pairs(workspace:GetDescendants()) do
-        if ESP_Items[Object.Name] then
-            ApplySettings(Object)
-        end
-    end
-end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab2:Toggle("Không Có Hiệu Ứng Bóng Tối","Makes it so you can see further in dark rooms.",false,function(Bool)
         NoDark = Bool
@@ -681,15 +501,6 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         DisableTimothy = Bool
     end)
 end
-Tab2:Toggle("Sao Chép Thư Rác","Other players will basically see you having a seizure.",false,function(Bool)
-    if Bool then
-        SpoofMotor = game:GetService("RunService").Heartbeat:Connect(function()
-            MotorReplication:FireServer(math.random(1,100000),math.random(1,100000),math.random(1,100000),false)
-        end)
-    else
-        SpoofMotor:Disconnect()
-    end
-end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab2:Toggle("Đèn Không Bể","Makes it so entities like Rush and Ambush won't shatter/break the lights (which makes the room dark)",false,function(Bool)
         if Bool then
